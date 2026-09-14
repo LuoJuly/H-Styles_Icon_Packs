@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <themeInfo>
     <packageName>cn.luojuly.H2OS</packageName>
-    <versionName>1.1</versionName>
-    <versionCode>2</versionCode>
+    <versionName>3.0.0</versionName>
+    <versionCode>17</versionCode>
     <themeName>H₂-Styles icon pack</themeName>
     <themePointColor>#4FC3F7</themePointColor>
     <themePreview img1="polar_preview" />

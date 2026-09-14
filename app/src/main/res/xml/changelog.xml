@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <version title="v3.0.0" />
+    <item text="Rebuilt on Blueprint dashboard" />
+    <item text="Kept original icons, appfilter and package name cn.luojuly.H2OS" />
+    <item text="Migrated from Polar Dashboard" />
+</resources>

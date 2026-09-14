@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?><!--suppress CheckTagEmptyBody -->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingDefaultResource">
+    <integer name="home_actions_style">1</integer>
+    <bool name="show_overview">true</bool>
+    <bool name="show_menu_in_home_page">false</bool>
+    <bool name="show_quick_apply_text">false</bool>
+    <string name="quick_apply_custom_text"></string>
+    <string-array name="home_list_titles">
+        <item>H₂-Styles</item>
+    </string-array>
+    <string-array name="home_list_descriptions">
+        <item>Welcome to use the H₂-Styles icon pack!(*・_・)ノ⌒*</item>
+    </string-array>
+    <string-array name="home_list_icons">
+        <item>netease</item>
+    </string-array>
+    <string-array name="home_list_links">
+        <item>https://github.com/LuoJuly</item>
+    </string-array>
+</resources>
