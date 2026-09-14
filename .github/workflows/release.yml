@@ -1,0 +1,64 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    name: Build and publish release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Make Gradle wrapper executable
+        run: chmod +x gradlew
+
+      - name: Build release APK
+        run: ./gradlew :app:assembleRelease --stacktrace
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          VERSION="$(python3 - <<'PY'
+          import re
+          text = open("buildSrc/src/main/java/MyApp.kt", encoding="utf-8").read()
+          print(re.search(r'versionName = "([^"]+)"', text).group(1))
+          PY
+          )"
+          APK="$(find app/build/outputs/apk/release -name '*.apk' | head -n 1)"
+          test -n "$APK"
+          DEST="H2-Styles-${VERSION}.apk"
+          cp "$APK" "$DEST"
+          NOTES="$(cat <<EOF
+          H₂-Styles ${VERSION} — Hydrogen Wind Icon Pack
+
+          - Covers 500+ apps
+          - Icons mostly from Hydrogen OS (氢OS), some redrawn
+          - Package: \`cn.luojuly.H2OS\`
+          - Dashboard: Blueprint
+          EOF
+          )"
+          if gh release view "v${VERSION}" >/dev/null 2>&1; then
+            gh release upload "v${VERSION}" "$DEST" --clobber
+          else
+            gh release create "v${VERSION}" "$DEST" \
+              --title "H₂-Styles ${VERSION}" \
+              --notes "$NOTES"
+          fi
