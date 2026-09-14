@@ -1,6 +1,6 @@
 # H₂-Styles
 
-**Hydrogen Wind Icon Pack**
+**Hydrogen OS Style Icon Pack**
 
 An Android icon pack that now covers **500+ apps**.
 
